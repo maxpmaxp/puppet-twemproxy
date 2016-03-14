@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+# A Puppetfile used during acceptance testing to install dependencies 
+# which also might include private bespoke git repo's. During acceptance
+# and on each host we do:
+# cd /etc/puppet/modules/ife_toolbelt && librarian-puppet install --path /etc/puppet/modules
+
+forge "https://forgeapi.puppetlabs.com"
+
+# Puppet Forge
+mod "puppetlabs/stdlib"   , "4.3.2"
+mod "maestrodev/wget"     , "1.5.6"
+mod "thomasvandoren-redis", "0.10.0"
+
