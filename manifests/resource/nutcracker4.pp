@@ -14,6 +14,7 @@ define twemproxy::resource::nutcracker4 (
 
   $log_dir              = '/var/log/nutcracker',
   $pid_dir              = '/var/run/nutcracker',
+  $conf_dir             = '/opt/nutcracker/etc',
 
   $statsaddress         = '127.0.0.1',
   $statsport            = 22222,
@@ -80,17 +81,18 @@ define twemproxy::resource::nutcracker4 (
 
   notify { "Working with ${distribution} ${nutcracker_hash} on ${port}": }
 
-  if ! defined(File['/etc/nutcracker']) {
-    file { '/etc/nutcracker':
-      ensure => 'directory',
-      mode   => '0755'
-    }
+  if ! defined(File[$conf_dir]) {
+    exec { "Create ${conf_dir}":
+      creates => $conf_dir,
+      command => "mkdir -m 0755 -p ${conf_dir}",
+      path => $::path
+    } -> file { $conf_dir : }
   }
 
   if ! defined(File[$log_dir]) {
     file { $log_dir:
       ensure => 'directory',
-      mode   => '0755'
+      mode   => '0777'
     }
   }
 
@@ -107,7 +109,7 @@ define twemproxy::resource::nutcracker4 (
     default  => 'twemproxy/nutcracker.erb',
   }
 
-  file { "/etc/nutcracker/${name}.yml":
+  file { "${conf_dir}/${name}.yml":
     ensure  => present,
     content => template('twemproxy/pool.erb', 'twemproxy/members.erb'),
     require => Anchor['twemproxy::install::end']

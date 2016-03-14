@@ -11,7 +11,7 @@ class twemproxy::autoconf {
   $prefix = $twemproxy::params::default_prefix
 
   # at least for centos 6.5 & 6.6 this is the minimum required version
-  $resource = 'autoconf-2.64'
+  $resource = 'autoconf-2.69'
 
   Anchor['twemproxy::autoconf::begin'] ->
   file { "${prefix}/src/${resource}.tar.gz":

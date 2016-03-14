@@ -1,11 +1,12 @@
 {
-  "name": "puppet-twemproxy",
+  "name": "decebal2dac-twemproxy",
   "version": "1.1.5",
-  "author": "Paul Gilligan <Paul.Gilligan@moneysupermarket.com>",
+  "author": "Decebal Dobrica <decebal.dobrica@gmail.com>",
   "summary": "This module installs and configures Twemproxy.",
   "license": "Apache-2.0",
-  "source": "https://github.com/MSMFG/puppet-twemproxy",
-  "project_page": "https://github.com/MSMFG/puppet-twemproxy",
+  "source": "https://github.com/decebal/puppet-twemproxy",
+  "project_page": "https://github.com/decebal/puppet-twemproxy",
+  "issues_url": "https://github.com/decebal/puppet-twemproxy/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -48,9 +49,6 @@
   ],
   "description": "This is a puppet module installs and configures Twemproxy, for the MSM trustrap based cloud environments.",
   "dependencies": [
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.3.2"
-    }      
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.3.2"}
   ]
 }
