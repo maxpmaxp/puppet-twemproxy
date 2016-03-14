@@ -19,4 +19,5 @@ spec/fixtures/modules/vcsrepo/
 spec/fixtures/modules/wget/
 spec/fixtures/modules/jboss_as/
 spec/fixtures/modules/mysql/
+spec/fixtures/modules/runit
 
