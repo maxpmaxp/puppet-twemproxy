@@ -1,5 +1,5 @@
 name    'decebal2dac-twemproxy'
-version '1.2.5'
+version '1.2.6'
 source  'git@github.com:decebal/puppet-twemproxy.git'
 author  'Decebal Dobrica <decebal.dobrica@gmail.com>'
 license 'Apache-2.0'
