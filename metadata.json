@@ -1,6 +1,6 @@
 {
   "name": "decebal2dac-twemproxy",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": "Decebal Dobrica <decebal.dobrica@gmail.com>",
   "summary": "This module installs and configures Twemproxy.",
   "license": "Apache-2.0",
