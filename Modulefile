@@ -1,0 +1,8 @@
+name    'decebal2dac-twemproxy'
+version '1.2.5'
+source  'git@github.com:decebal/puppet-twemproxy.git'
+author  'Decebal Dobrica <decebal.dobrica@gmail.com>'
+license 'Apache-2.0'
+summary 'This is a puppet module installs and configures Twemproxy.'
+description  'This is a puppet module installs and configures Twemproxy.'
+project_page 'https://github.com/decebal/puppet-twemproxy'
