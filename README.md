@@ -12,75 +12,36 @@ The support version of twemproxy is 0.4.0 to take advantage of various improveme
 ## USAGE
 
 ```ruby
-twemproxy::resource::nutcracker4 { 'redis-twemproxy':
-    nutcracker_hash      => 'fnv1a_64',
-    #nutcracker_hash_tag  => '{}',
-    distribution         => 'ketama',
-    auto_eject_hosts     => true,
-    verbosity            => 7,
-    log_dir              => '/var/log/nutcracker',
-    pid_dir              => '/var/run/nutcracker',
-    statsaddress         => '127.0.0.1',
-    statsport            => 22222,
-    statsinterval        => 10000,
-    members              =>  [
-      {
-        'ip'         => '127.0.0.1',
-        'name'       => 'redis-6390',
-        'redis_port' => '6379',
-        'weight'     => '1',
-        'timeout'    => 400
-      },
-      {
-        'ip'         => '127.0.0.1',
-        'name'       => 'redis-6391',
-        'redis_port' => '6380',
-        'weight'     => '1',
-        'timeout'    => 400
-      }
-    ]
-  }
-        twemproxy::resource::nutcracker4 { 'redis-twemproxy':
-          port                 => '22112',
-          nutcracker_hash      => 'fnv1a_64',
-          nutcracker_hash_tag  => '{}',
-          distribution         => 'ketama',
-          auto_eject_hosts     => true,
-
-          verbosity            => 11,
-          
-          log_dir              => '/var/log/nutcracker',
-          pid_dir              => '/var/run/nutcracker',
-          redis                => true,
-
-          statsaddress         => '127.0.0.1',
-          statsport            => 22222,
-          statsinterval        => 10000,
-
-          members              =>  [
-           { 
-              'ip'         => 'myhost6390.domain',
-              'name'       => 'redis-6390',
-              'redis_port' => '6390',
-              'weight'     => '1',
-              'timeout'    => '400'
-           },
-           { 
-              'ip'         => 'myhost6391.domain',
-              'name'       => 'redis-6391',
-              'redis_port' => '6391',
-              'weight'     => '1',
-              'timeout'    => '400'
-           },
-           { 
-              'ip'         => 'myhost6391.domain',
-              'name'       => 'redis-6392',
-              'redis_port' => '6392',
-              'weight'     => '1',
-              'timeout'    => '400'
-           }
-          ] 
-        }    
+    twemproxy::resource::nutcracker4 { 'redis-twemproxy':
+        redis_db             => 1,
+        port                 => '22112',
+        nutcracker_hash      => 'fnv1a_64',
+        nutcracker_hash_tag  => '{}',
+        distribution         => 'ketama',
+        auto_eject_hosts     => true,
+        verbosity            => 7,
+        log_dir              => '/var/log/nutcracker',
+        pid_dir              => '/var/run/nutcracker',
+        statsaddress         => '127.0.0.1',
+        statsport            => 22222,
+        statsinterval        => 10000,
+        members              =>  [
+            {
+                'ip'         => '127.0.0.1',
+                'name'       => 'redis-6390',
+                'redis_port' => '6379',
+                'weight'     => '1',
+                'timeout'    => 400
+            },
+            {
+                'ip'         => '127.0.0.1',
+                'name'       => 'redis-6391',
+                'redis_port' => '6380',
+                'weight'     => '1',
+                'timeout'    => 400
+            }
+        ]
+    }
 ```
 
 ## Testing
