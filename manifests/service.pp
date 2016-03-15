@@ -1,4 +1,4 @@
-class twemproxy::service (
+define twemproxy::service (
   $service_ensure,
   $service_name,
   $service_enable,
@@ -20,7 +20,7 @@ class twemproxy::service (
     }
   }
   if $service_manage {
-    service { $::twemproxy::params::default_service_name:
+    service { $service_name :
       ensure => $_service_ensure,
       name   => $service_name,
       enable => $service_enable,

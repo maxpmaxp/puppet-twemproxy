@@ -9,7 +9,8 @@ define twemproxy::resource::nutcracker4 (
   $server_retry_timeout = '2000',
   $server_failure_limit = '3',
   $redis                = true,
-  
+  $redis_db             = 0,
+
   $verbosity            = 6,  # 6-11
 
   $log_dir              = '/var/log/nutcracker',
@@ -71,7 +72,7 @@ define twemproxy::resource::nutcracker4 (
   validate_bool($service_manage)
   validate_string($service_ensure)
 
-  class { '::twemproxy::service':
+  twemproxy::service { $name:
     service_name   => $name,
     service_enable => $service_enable,
     service_manage => $service_manage,
@@ -120,5 +121,5 @@ define twemproxy::resource::nutcracker4 (
     content => template($service_template_os_specific),
     require => [ Anchor['twemproxy::install::end'], File[$log_dir], File[$pid_dir] ]
   } ~>
-  Service[$::twemproxy::params::default_service_name]
+  Service[$name]
 }

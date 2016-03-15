@@ -1,5 +1,5 @@
 class twemproxy::install (
-  $version        = '0.4.0',
+  $version        = '0.4.1',
   $cflags_opts    = '-ggdb3 -O0',
   $debug_mode     = false,
   $debug_opts     = 'full'

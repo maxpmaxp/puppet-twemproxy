@@ -38,16 +38,10 @@ do_start()
     touch $PIDFILE
     chown $USER:$GROUP -R <%= @pid_dir %>
     chmod 755 <%= @pid_dir %>
-    echo -n "Starting ${NAME}: "
-    start-stop-daemon --start --quiet -m --pidfile $PIDFILE --chuid $USER:$GROUP --exec $DAEMON -- \
+    #echo -n "Starting ${NAME}: "
+    start-stop-daemon --start --quiet -m --pidfile --oknodo $PIDFILE --chuid $USER:$GROUP --exec $DAEMON -- \
         $DAEMON_ARGS
     RETVAL="$?"
-
-    case "$RETVAL" in
-        0|1) echo "STARTED." ;;
-        2) echo "FAILED." ;;
-    esac
-    
     return "$RETVAL"
 }
 
@@ -59,14 +53,10 @@ do_stop()
     #   2 if daemon could not be stopped
     #   other if a failure occurred
 
-    echo -n "Stopping ${NAME}: "
-    start-stop-daemon --stop --quiet --pidfile $PIDFILE --exec $DAEMON || true
+    #echo -n "Stopping ${NAME}: "
+    start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --exec $DAEMON || true
 
     RETVAL="$?"
-    case "$RETVAL" in
-        0|1) echo "STOPPED." ;;
-        2) echo "FAILED." ;;
-    esac
     return "$RETVAL"
 }
 
