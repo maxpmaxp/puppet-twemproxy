@@ -54,6 +54,9 @@ bundle exec rake beaker
 BEAKER_setfile=spec/acceptance/nodesets/centos-7-x64.yml bundle exec rake beaker
 ```
 
+## Production 
+For Tweaks and updates follow [official recommendations] (https://github.com/twitter/twemproxy/blob/master/notes/recommendation.md)
+
 ## Dependencies
 
 1. puppetlabs/stdlib
