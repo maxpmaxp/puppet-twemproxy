@@ -107,7 +107,7 @@ define twemproxy::resource::nutcracker4 (
   if $::operatingsystem == "Ubuntu"{
     $mode = '0644'
     $service_template_os_specific = 'twemproxy/nutcracker.unit.erb'
-    $service_init = "/etc/system.d/system/${name}.service"
+    $service_init = "/etc/systemd/system/${name}.service"
   } else {
     $mode = '0755'
     $service_template_os_specific = $::osfamily ? {
