@@ -104,19 +104,17 @@ define twemproxy::resource::nutcracker4 (
     }
   }
 
-  $service_template_os_specific = $::osfamily ? {
-    'RedHat' => 'twemproxy/nutcracker-redhat.erb',
-    'Debian' => 'twemproxy/nutcracker.erb',
-    default  => 'twemproxy/nutcracker.erb',
-  }
-
-  $mode = '0755'
-
   if $::operatingsystem == "Ubuntu"{
     $mode = '0644'
     $service_template_os_specific = 'twemproxy/nutcracker.unit.erb'
+  } else {
+    $mode = '0755'
+    $service_template_os_specific = $::osfamily ? {
+      'RedHat' => 'twemproxy/nutcracker-redhat.erb',
+      'Debian' => 'twemproxy/nutcracker.erb',
+      default  => 'twemproxy/nutcracker.erb',
+    }
   }
-
 
   file { "${conf_dir}/${name}.yml":
     ensure  => present,
