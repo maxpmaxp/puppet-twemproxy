@@ -137,9 +137,4 @@ define twemproxy::resource::nutcracker4 (
     require => [ Anchor['twemproxy::install::end'], File[$log_dir], File[$pid_dir] ]
   }
 
-  service { "${name}" :
-    ensure => running,
-    enable => true
-  }
-
 }
