@@ -135,6 +135,11 @@ define twemproxy::resource::nutcracker4 (
     content => template($service_template_os_specific),
     notify  => [Exec["${name}-systemd-daemon-reload"], Service["${name}"]],
     require => [ Anchor['twemproxy::install::end'], File[$log_dir], File[$pid_dir] ]
-  } ~>
-  Service[$name]
+  }
+
+  service { "${name}" :
+    ensure => running,
+    enable => true
+  }
+
 }
