@@ -107,6 +107,7 @@ define twemproxy::resource::nutcracker4 (
   if $::operatingsystem == "Ubuntu"{
     $mode = '0644'
     $service_template_os_specific = 'twemproxy/nutcracker.unit.erb'
+    $service_init = "/etc/init.d/${name}"
   } else {
     $mode = '0755'
     $service_template_os_specific = $::osfamily ? {
@@ -114,6 +115,7 @@ define twemproxy::resource::nutcracker4 (
       'Debian' => 'twemproxy/nutcracker.erb',
       default  => 'twemproxy/nutcracker.erb',
     }
+    $service_init = "/etc/system.d/system/${name}.service"
   }
 
   file { "${conf_dir}/${name}.yml":
@@ -121,7 +123,7 @@ define twemproxy::resource::nutcracker4 (
     content => template('twemproxy/pool.erb', 'twemproxy/members.erb'),
     require => Anchor['twemproxy::install::end']
   } ->
-  file { "/etc/init.d/${name}":
+  file {  $service_init:
     ensure  => present,
     mode    => $mode,
     content => template($service_template_os_specific),
