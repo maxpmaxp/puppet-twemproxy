@@ -118,6 +118,12 @@ define twemproxy::resource::nutcracker4 (
     $service_init = "/etc/init.d/${name}"
   }
 
+  exec { "${name}-systemd-daemon-reload":
+    command     => 'systemctl daemon-reload',
+    refreshonly => true,
+    path        => ['/usr/sbin', '/usr/bin', '/sbin', '/bin']
+  }
+
   file { "${conf_dir}/${name}.yml":
     ensure  => present,
     content => template('twemproxy/pool.erb', 'twemproxy/members.erb'),
@@ -127,6 +133,7 @@ define twemproxy::resource::nutcracker4 (
     ensure  => present,
     mode    => $mode,
     content => template($service_template_os_specific),
+    notify  => [Service["${name}"], Exec["${name}-systemd-daemon-reload"]],
     require => [ Anchor['twemproxy::install::end'], File[$log_dir], File[$pid_dir] ]
   } ~>
   Service[$name]
