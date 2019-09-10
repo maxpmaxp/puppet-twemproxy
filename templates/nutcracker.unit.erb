@@ -1,0 +1,11 @@
+[Unit]
+Description=Twemproxy <%= @name %>
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/nutcracker -v <%= @verbosity %> -c $CONFFILE -o $LOGFILE -p $PIDFILE -a <%= @statsaddress %> -s <%= @statsport %> -i <%= @statsinterval %> -d --pidfile=/var/run/<%= @name %>.pid >> /var/log/nutcracker/<%= @name %>.log
+ExecStop=/usr/bin/kill -9 `cat /var/run/<%= @name %>.pid`
+
+[Install]
+WantedBy=multi-user.target
